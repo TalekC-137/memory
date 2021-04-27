@@ -5,9 +5,13 @@ import android.graphics.Color
 import android.graphics.Color.green
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.delay
+import java.util.*
+import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("ResourceAsColor")
@@ -15,6 +19,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 var kliknięcia = 1
+
+
+
         button.setBackgroundResource(R.drawable.kafelek)
         button2.setBackgroundResource(R.drawable.kafelek)
         button3.setBackgroundResource(R.drawable.kafelek)
@@ -31,40 +38,65 @@ var kliknięcia = 1
         button14.setBackgroundResource(R.drawable.kafelek)
         button15.setBackgroundResource(R.drawable.kafelek)
         button16.setBackgroundResource(R.drawable.kafelek)
-
         button_akt.setOnClickListener(){
+           // losują się bloczki powstaje ich pseudo animacja
             if(kliknięcia ==1){
-            losowanie()
+                losowanie()
+
+
+
+
                 kliknięcia++
             }else {
                 Toast.makeText(this, "można losować tylko raz", Toast.LENGTH_LONG).show()
             }
         }
+        btn_submit.setOnClickListener(){
+            wynik()
 
-
+        }
 
 
 
     }
+    var ilosc = 0
+    var sum = 0
      fun ClickMuch(view: View){
 
         when(view.id){
-            R.id.button ->  button.setBackgroundResource(R.drawable.kafelek2)
-            R.id.button2 ->  button2.setBackgroundResource(R.drawable.kafelek2)
-            R.id.button3 -> button3.setBackgroundResource(R.drawable.kafelek2)
-                    R.id.button4 ->  button4.setBackgroundResource(R.drawable.kafelek2)
-                    R.id.button5->   button5.setBackgroundResource(R.drawable.kafelek2)
-                    R.id.button6->   button6.setBackgroundResource(R.drawable.kafelek2)
-                    R.id.button7->   button7.setBackgroundResource(R.drawable.kafelek2)
-                    R.id.button8->   button8.setBackgroundResource(R.drawable.kafelek2)
-                    R.id.button9->   button9.setBackgroundResource(R.drawable.kafelek2)
-                    R.id.button10->  button10.setBackgroundResource(R.drawable.kafelek2)
-                    R.id.button11->  button11.setBackgroundResource(R.drawable.kafelek2)
-                    R.id.button12->  button12.setBackgroundResource(R.drawable.kafelek2)
-                    R.id.button13->  button13.setBackgroundResource(R.drawable.kafelek2)
-                    R.id.button14->  button14.setBackgroundResource(R.drawable.kafelek2)
-                    R.id.button15->  button15.setBackgroundResource(R.drawable.kafelek2)
-                    R.id.button16->  button16.setBackgroundResource(R.drawable.kafelek2)
+            R.id.button -> {button.setBackgroundResource(R.drawable.kafelek2)
+                ilosc+=1
+            }
+            R.id.button2 -> { button2.setBackgroundResource(R.drawable.kafelek2)
+            ilosc +=2}
+            R.id.button3 -> {button3.setBackgroundResource(R.drawable.kafelek2)
+            ilosc += 3}
+                    R.id.button4 ->  {button4.setBackgroundResource(R.drawable.kafelek2)
+                    ilosc+=4}
+                    R.id.button5->  { button5.setBackgroundResource(R.drawable.kafelek2)
+                    ilosc+=5}
+                    R.id.button6->   {button6.setBackgroundResource(R.drawable.kafelek2)
+                    ilosc+=6}
+                    R.id.button7->  { button7.setBackgroundResource(R.drawable.kafelek2)
+                    ilosc+=7}
+                    R.id.button8->  { button8.setBackgroundResource(R.drawable.kafelek2)
+                    ilosc+=8}
+                    R.id.button9->   {button9.setBackgroundResource(R.drawable.kafelek2)
+                    ilosc+=9}
+                    R.id.button10-> { button10.setBackgroundResource(R.drawable.kafelek2)
+                    ilosc+= 10}
+                    R.id.button11->  {button11.setBackgroundResource(R.drawable.kafelek2)
+                    ilosc+=11}
+                    R.id.button12->  {button12.setBackgroundResource(R.drawable.kafelek2)
+                    ilosc+=12}
+                    R.id.button13->  {button13.setBackgroundResource(R.drawable.kafelek2)
+                    ilosc+=13}
+                    R.id.button14->  {button14.setBackgroundResource(R.drawable.kafelek2)
+                    ilosc +=14}
+                    R.id.button15->  {button15.setBackgroundResource(R.drawable.kafelek2)
+                    ilosc +=15}
+                    R.id.button16->  {button16.setBackgroundResource(R.drawable.kafelek2)
+                    ilosc+=16 }
         }
 
 
@@ -74,10 +106,9 @@ var kliknięcia = 1
     // jebać optymalizację, w wakację zamknę to w jakiegoś fajnego loopa żeby nie wyglądało jak cegła
     fun losowanie() {
 
-
        val rand1 = random()
      val rand2 = random()
-        if (rand1 == rand2){
+        if (rand2 == rand1){
             losowanie()
         }else{
             val rand3 = random()
@@ -105,6 +136,31 @@ var kliknięcia = 1
                     if(rand1 == 14 || rand2 == 14 || rand3 == 14||  rand4 == 14) { button14.setBackgroundResource(R.drawable.kafelek2) }
                     if(rand1 == 15 || rand2 == 15 || rand3 == 15||  rand4 == 15) { button15.setBackgroundResource(R.drawable.kafelek2) }
                     if(rand1 == 16 || rand2 == 16 || rand3 == 16||  rand4 == 16) { button16.setBackgroundResource(R.drawable.kafelek2) }
+                        //czeka na zniknięcie
+                    Timer("waiting", false).schedule(3000) {
+
+                        button.setBackgroundResource(R.drawable.kafelek)
+                        button2.setBackgroundResource(R.drawable.kafelek)
+                        button3.setBackgroundResource(R.drawable.kafelek)
+                        button4.setBackgroundResource(R.drawable.kafelek)
+                        button5.setBackgroundResource(R.drawable.kafelek)
+                        button6.setBackgroundResource(R.drawable.kafelek)
+                        button7.setBackgroundResource(R.drawable.kafelek)
+                        button8.setBackgroundResource(R.drawable.kafelek)
+                        button9.setBackgroundResource(R.drawable.kafelek)
+                        button10.setBackgroundResource(R.drawable.kafelek)
+                        button11.setBackgroundResource(R.drawable.kafelek)
+                        button12.setBackgroundResource(R.drawable.kafelek)
+                        button13.setBackgroundResource(R.drawable.kafelek)
+                        button14.setBackgroundResource(R.drawable.kafelek)
+                        button15.setBackgroundResource(R.drawable.kafelek)
+                        button16.setBackgroundResource(R.drawable.kafelek)
+                    }
+
+                  sum= rand1 + rand2 + rand3 + rand4
+
+
+
 
                 }
             }
@@ -119,4 +175,17 @@ fun random():Int{
     val rand1 = (0..16).random()
     return rand1
 }
+
+fun wynik(){
+    if(ilosc == sum){
+        Toast.makeText(this, "dobrze", Toast.LENGTH_LONG).show()
+    }else if(ilosc != sum){
+        Toast.makeText(this, "źle", Toast.LENGTH_LONG).show()
+    }else{
+        Toast.makeText(this, "chuj wie jak ty to zrobiłeś", Toast.LENGTH_LONG).show()
+    }
+
+}
+
+
 }
