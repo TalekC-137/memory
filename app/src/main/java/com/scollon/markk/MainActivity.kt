@@ -3,41 +3,36 @@ package com.scollon.markk
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.view.View.GONE
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity() {
+
+    var ClickedBtns = listOf<Int>()
+    var choosen1 = 0; var choosen2 = 0; var choosen3 = 0; var choosen4 =0
+    var points = 0; var kliknięcia = 1; var limit = 0;
+    var Numerki = listOf<Int>()
+    var ExcludeNumerki = listOf<Int>(3,4,1,8,5)
+
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-var kliknięcia = 1
 
 
-        button.setBackgroundResource(R.drawable.kafelek)
-        button2.setBackgroundResource(R.drawable.kafelek)
-        button3.setBackgroundResource(R.drawable.kafelek)
-        button4.setBackgroundResource(R.drawable.kafelek)
-        button5.setBackgroundResource(R.drawable.kafelek)
-        button6.setBackgroundResource(R.drawable.kafelek)
-        button7.setBackgroundResource(R.drawable.kafelek)
-        button8.setBackgroundResource(R.drawable.kafelek)
-        button9.setBackgroundResource(R.drawable.kafelek)
-        button10.setBackgroundResource(R.drawable.kafelek)
-        button11.setBackgroundResource(R.drawable.kafelek)
-        button12.setBackgroundResource(R.drawable.kafelek)
-        button13.setBackgroundResource(R.drawable.kafelek)
-        button14.setBackgroundResource(R.drawable.kafelek)
-        button15.setBackgroundResource(R.drawable.kafelek)
-        button16.setBackgroundResource(R.drawable.kafelek)
+            zamienNaPodstawe()
+
         button_akt.setOnClickListener(){
            // losują się bloczki powstaje ich pseudo animacja
             if(kliknięcia ==1){
                 losowanie()
-
 
 
                 kliknięcia++
@@ -53,7 +48,7 @@ var kliknięcia = 1
 
 
     }
-    var ClickedBtns = listOf<Int>()
+
      fun ClickMuch(view: View){
 
         when(view.id){
@@ -99,7 +94,7 @@ var kliknięcia = 1
     // jebać optymalizację, w wakację zamknę to w jakiegoś fajnego loopa żeby nie wyglądało jak cegła
 
 
-   var choosen1 = 0; var choosen2 = 0; var choosen3 = 0; var choosen4 =0
+
 
     fun losowanie() {
 
@@ -134,24 +129,9 @@ var kliknięcia = 1
                     if(rand1 == 15 || rand2 == 15 || rand3 == 15||  rand4 == 15) { button15.setBackgroundResource(R.drawable.kafelek2) }
                     if(rand1 == 16 || rand2 == 16 || rand3 == 16||  rand4 == 16) { button16.setBackgroundResource(R.drawable.kafelek2) }
                         //czeka na zniknięcie
-                    Timer("waiting", false).schedule(3000) {
+                    Timer("waiting", false).schedule(2000) {
 
-                        button.setBackgroundResource(R.drawable.kafelek)
-                        button2.setBackgroundResource(R.drawable.kafelek)
-                        button3.setBackgroundResource(R.drawable.kafelek)
-                        button4.setBackgroundResource(R.drawable.kafelek)
-                        button5.setBackgroundResource(R.drawable.kafelek)
-                        button6.setBackgroundResource(R.drawable.kafelek)
-                        button7.setBackgroundResource(R.drawable.kafelek)
-                        button8.setBackgroundResource(R.drawable.kafelek)
-                        button9.setBackgroundResource(R.drawable.kafelek)
-                        button10.setBackgroundResource(R.drawable.kafelek)
-                        button11.setBackgroundResource(R.drawable.kafelek)
-                        button12.setBackgroundResource(R.drawable.kafelek)
-                        button13.setBackgroundResource(R.drawable.kafelek)
-                        button14.setBackgroundResource(R.drawable.kafelek)
-                        button15.setBackgroundResource(R.drawable.kafelek)
-                        button16.setBackgroundResource(R.drawable.kafelek)
+                       zamienNaPodstawe()
                     }
                     choosen1 = rand1
                     choosen2 = rand2
@@ -179,12 +159,53 @@ fun random():Int{
 fun wynik(){
     if(ClickedBtns.contains(choosen1) && ClickedBtns.contains(choosen2) && ClickedBtns.contains(choosen3) && ClickedBtns.contains(choosen4)){
         Toast.makeText(this, "brawo", Toast.LENGTH_LONG).show()
-
+        ClickedBtns.drop(ClickedBtns.size)
+                for(i in 1 until ClickedBtns.size){
+                    ClickedBtns.drop(ClickedBtns.size-1)
+                }
+        points++
+        kliknięcia = 1
+        Toast.makeText(this, "wynik: " + points.toString(), Toast.LENGTH_LONG).show()
+        zamienNaPodstawe()
     }else{
+
+
         Toast.makeText(this, "źle", Toast.LENGTH_LONG).show()
     }
 
 }
+
+    fun zamienNaPodstawe(){
+        button.setBackgroundResource(R.drawable.kafelek)
+        button2.setBackgroundResource(R.drawable.kafelek)
+        button3.setBackgroundResource(R.drawable.kafelek)
+        button4.setBackgroundResource(R.drawable.kafelek)
+        button5.setBackgroundResource(R.drawable.kafelek)
+        button6.setBackgroundResource(R.drawable.kafelek)
+        button7.setBackgroundResource(R.drawable.kafelek)
+        button8.setBackgroundResource(R.drawable.kafelek)
+        button9.setBackgroundResource(R.drawable.kafelek)
+        button10.setBackgroundResource(R.drawable.kafelek)
+        button11.setBackgroundResource(R.drawable.kafelek)
+        button12.setBackgroundResource(R.drawable.kafelek)
+        button13.setBackgroundResource(R.drawable.kafelek)
+        button14.setBackgroundResource(R.drawable.kafelek)
+        button15.setBackgroundResource(R.drawable.kafelek)
+        button16.setBackgroundResource(R.drawable.kafelek)
+
+    }
+
+
+    fun losowanko(){
+
+        var lista = listOf<Int>()
+        lista += random()
+        lista += random()
+        if(lista.indexOf(1) == lista.indexOf(2)) {
+
+        }
+
+    }
 
 
 }
