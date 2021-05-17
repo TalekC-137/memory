@@ -241,36 +241,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
 
-    <ListView
-
-        android:id="@+id/lista"
-        android:layout_width="375dp"
-        android:layout_height="226dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lista2"
-        app:layout_constraintTop_toBottomOf="@+id/TableLevel1" />
-
-    <ListView
-        android:visibility="gone"
-        android:id="@+id/lista2"
-        android:layout_width="0dp"
-        android:layout_height="506dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/lista"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_akt" />
-"
+    "
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_akt"
         app:layout_constraintVertical_bias="0.0" />
 
 
+]]>
 </androidx.constraintlayout.widget.ConstraintLayout>
