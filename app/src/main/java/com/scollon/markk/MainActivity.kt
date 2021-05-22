@@ -61,6 +61,13 @@ class MainActivity : AppCompatActivity() {
         btn_submit.setOnClickListener(){
 
 
+            if(isEqual(playerChoosen, generatedBlocks)){
+
+                Toast.makeText(this, "giiit", Toast.LENGTH_LONG).show()
+
+            }else{
+                Toast.makeText(this, "nie git", Toast.LENGTH_LONG).show()
+            }
 
 
 
@@ -90,6 +97,10 @@ var ir = 1
 
 // HOW TF DO I LOOP THAT SHIT!?!?!!?!?
      fun ClickMuch(view: View){
+
+
+
+
         when(view.id){
                     R.id.button  ->  {
                         if(generatedBlocks.contains(1)){
@@ -157,9 +168,7 @@ var ir = 1
                         playerChoosen += 16 }else{}}
 
         }
-
-
-       }
+     }
 
     fun kolorowanie(bloczki: List<Int>) {
 
@@ -207,12 +216,14 @@ fun random(liczba: Int):Int{
     }
     generatedBlocks = wylosowane
 }
+    inline fun<reified T> isEqual(first: List<T>, second: List<T>): Boolean {
 
+        if (first.size != second.size) {
+            return false
+        }
 
-
-
-
-
+        return first.toTypedArray() contentEquals second.toTypedArray()
+    }
 }
 
 

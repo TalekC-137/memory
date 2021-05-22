@@ -16,6 +16,11 @@ class Glowna : AppCompatActivity() {
             startActivity(i)
 
         }
+        btn_seq.setOnClickListener(){
+
+            val i = Intent(this, sequence::class.java)
+            startActivity(i)
+        }
 
     }
 }
