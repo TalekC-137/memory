@@ -8,118 +8,162 @@
 
 
     <RelativeLayout
-        android:id="@+id/buttons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#2b87d2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/button21"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="2dp"
-            android:onClick="wybieranie" />
+
+        <View
+            android:id="@+id/srodek"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
 
         <Button
-            android:id="@+id/button22"
+            android:id="@+id/btn1"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="2dp"
-            android:layout_toRightOf="@id/button21"
-            android:onClick="wybieranie" />
+            android:layout_above="@id/btn5"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toLeftOf="@id/btn2"
+            android:onClick="klik"
+
+            />
 
         <Button
-            android:id="@+id/button23"
+            android:id="@+id/btn2"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="2dp"
-            android:layout_toRightOf="@id/button22"
-            android:onClick="wybieranie" />
+            android:layout_above="@+id/btn5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="8dp"
+            android:onClick="klik" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_above="@id/btn5"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toRightOf="@+id/btn2"
+            android:onClick="klik" />
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/btn1"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/btn5"
+            android:onClick="klik" />
 
 
         <Button
-            android:id="@+id/button24"
+            android:id="@+id/btn5"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_below="@id/button21"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="2dp"
-            android:onClick="wybieranie" />
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:onClick="klik"
+            />
 
         <Button
-            android:id="@+id/button25"
+            android:id="@+id/btn6"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_below="@id/button22"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="2dp"
-            android:layout_toRightOf="@id/button24"
-            android:onClick="wybieranie" />
+            android:layout_below="@id/btn3"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="4dp"
+            android:layout_toRightOf="@id/btn5"
+            android:onClick="klik" />
 
         <Button
-            android:id="@+id/button26"
+            android:id="@+id/btn7"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_below="@id/button23"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="2dp"
-            android:layout_toRightOf="@id/button25"
-            android:onClick="wybieranie" />
+            android:layout_below="@id/btn4"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_toLeftOf="@id/btn8"
+            android:onClick="klik" />
 
         <Button
-            android:id="@+id/button27"
+            android:id="@+id/btn8"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_below="@id/button24"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="2dp"
-            android:onClick="wybieranie" />
+            android:layout_below="@id/btn5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:onClick="klik" />
 
         <Button
-            android:id="@+id/button28"
+            android:id="@+id/btn9"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_below="@id/button25"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="2dp"
-            android:layout_toRightOf="@id/button24"
-            android:onClick="wybieranie" />
+            android:layout_below="@id/btn6"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_toRightOf="@id/btn5"
+            android:onClick="klik" />
+
+
+
+        <ListView
+            android:id="@+id/lista"
+            android:layout_width="392dp"
+            android:layout_height="232dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone" />
 
         <Button
-            android:id="@+id/button29"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@id/button26"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="2dp"
-            android:layout_toRightOf="@id/button25"
-            android:onClick="wybieranie" />
+            android:id="@+id/btn_run"
+            android:layout_width="148dp"
+            android:layout_height="70dp"
+            android:layout_below="@id/btn8"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/blue"
+            android:text="run"
+            android:textColor="#DDDD" />
+
+        <TextView
+            android:id="@+id/tv_rounds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:textColor="#DDDD"
+            android:textSize="25dp"
+            android:layout_above="@id/btn2"
+            android:layout_centerHorizontal="true"/>
+
+
     </RelativeLayout>
+
 
     <Button
         android:id="@+id/btn_start"
@@ -130,6 +174,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
