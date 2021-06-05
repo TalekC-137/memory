@@ -165,16 +165,124 @@
     </RelativeLayout>
 
 
-    <Button
-        android:id="@+id/btn_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
+    <LinearLayout
+        android:id="@+id/cimno"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/end_game"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="254dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="254dp"
+        android:background="@drawable/failscreen"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintVertical_weight="2">
+
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:text="Your score"
+            android:textColor="#FFFF"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv_highScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="6dp"
+            android:text="Your High Score"
+            android:textColor="#FFFF"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv_lastScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_highScore"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="6dp"
+            android:text="Last Saved Score"
+            android:textColor="#FFFF"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@id/center"
+            android:textColor="#FFFF"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv_HighscoreView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_score"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@id/center"
+            android:textColor="#FFFF"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv_lastScoreView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_HighscoreView"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@id/center"
+            android:textColor="#FFFF"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btn_again"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/center"
+            android:text="try again" />
+
+        <View
+            android:id="@+id/center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible"></View>
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/center"
+            android:text="save" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

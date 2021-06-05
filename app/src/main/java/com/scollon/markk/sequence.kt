@@ -25,7 +25,7 @@ class sequence : AppCompatActivity() {
         findViewById(R.id.btn7),findViewById(R.id.btn8),
         findViewById(R.id.btn9),
     ) }
-
+    var activationSpeed: Long = 500
     var seq_pos = 0
     var rounds = 1
     var seq = listOf<Int>()
@@ -48,6 +48,15 @@ class sequence : AppCompatActivity() {
             btn_run.visibility  = View.GONE
         }
 
+        btn_again.setOnClickListener(){
+            finish()
+            startActivity(getIntent())
+            overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out);
+        }
+
+        btn_save.setOnClickListener(){
+            addRecord()
+        }
 
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, seq)
@@ -56,7 +65,7 @@ class sequence : AppCompatActivity() {
     }
 
     fun klik(view: View){
-
+        activationSpeed = 250
         when(view.id){
 
             R.id.btn1 -> getButton(1)
@@ -84,7 +93,7 @@ class sequence : AppCompatActivity() {
                 //player got the whole sequence right
                 //    Toast.makeText(this, "brawo", Toast.LENGTH_LONG).show()
                 seq_pos =0
-                rounds++
+                rounds++ // one more block will be shown in the next round
                 seqShow()
             }
 
@@ -92,6 +101,11 @@ class sequence : AppCompatActivity() {
             // player made a mistake
               Toast.makeText(this, "better luck next time", Toast.LENGTH_LONG).show()
             var beatenScore = rounds-1
+            tv_score.text = beatenScore.toString()
+            cimno.visibility = View.VISIBLE
+            end_game.visibility = View.VISIBLE
+            highScore()
+            lastRecord()
 
         }
 
@@ -100,7 +114,7 @@ class sequence : AppCompatActivity() {
     }
 
     fun seqShow(){
-
+        activationSpeed = 500
         clickableFalse()
 
         tv_rounds.text = (rounds-1).toString()
@@ -125,15 +139,12 @@ class sequence : AppCompatActivity() {
     }
 
     fun btnShow(btn: Int){
-// I know I could do it with switch case but i started with ifs so i finished with ifs
-        // imma loop it later
 
+        // iterates through all blocks to see which should be shown
         for (i in bloczki.indices){
-
-
             if(i==btn-1) {
                 CoroutineScope(Dispatchers.IO).launch {
-                    delay(TimeUnit.MILLISECONDS.toMillis(500))
+                    delay(TimeUnit.MILLISECONDS.toMillis(activationSpeed))
                     withContext(Dispatchers.Main) {
                         // this is called after 3 secs
                         bloczki[i].setBackgroundResource(R.drawable.blue);
@@ -146,8 +157,55 @@ class sequence : AppCompatActivity() {
         }
 
     }
+    private fun addRecord() {
+        val score = tv_score.text.toString()
+        val scoreInt = Integer.parseInt(score)
+        val databaseHandler3: DatabaseHandler3 = DatabaseHandler3(this)
+        if (!score.isEmpty()) {
+            val status =
+                databaseHandler3.addEmployee(RecordModel(0, scoreInt))
+            if (status > -1) {
+                Toast.makeText(applicationContext, "Record saved", Toast.LENGTH_LONG).show()
+            }
+        } else {
+            Toast.makeText(
+                applicationContext,
+                "you messed up fool",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    private fun lastRecord() {
+        val databaseHandler3: DatabaseHandler3 = DatabaseHandler3(this)
+
+            // if says "bmi" because i copied it from my old code and i'm too lazy to change that
+           // AND since I'm the only one who will be working with this code I don't necessarily need to
+        if(databaseHandler3.getBmiCount() != 0){
+
+            var RecordNum = databaseHandler3.getBmiCount()
+
+            var modelik: RecordModel? = databaseHandler3.getOne(RecordNum)
+
+            var a:Int = modelik?.score ?: 0
+
+            tv_lastScoreView.text = a.toString()
+
+        }
 
 
+    }
+
+
+    private fun highScore(){
+        val databaseHandler3: DatabaseHandler3 = DatabaseHandler3(this)
+        if(databaseHandler3.getBmiCount() != 0){
+
+            var rekord = databaseHandler3.getBiggestInTheColumn()
+            tv_HighscoreView.text = rekord.toString()
+        }
+
+    }
 
     fun basicColor(){
 
