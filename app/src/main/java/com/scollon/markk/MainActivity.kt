@@ -18,8 +18,7 @@ import kotlin.concurrent.schedule
 class MainActivity : AppCompatActivity() {
     var playerChoosen = listOf<Int>()
     var liczbaBloczkow = 3
-    var points = 0;
-    var doLosowani = 16;
+    var points = 0
     var mistakes = 0
     var pickedGood = 0
     var bloczki1 = listOf(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
@@ -50,28 +49,14 @@ class MainActivity : AppCompatActivity() {
 
         button_akt.setOnClickListener(){
 
+                tv_points.text = points.toString() //aka 0 hah
                 losowanko(liczbaBloczkow)
                 kolorowanie(generatedBlocks)
-
+                button_akt.visibility = View.GONE
                 val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, generatedBlocks)
                     lista.adapter = adapter
         }
 
-        btn_submit.setOnClickListener(){
-
-
-            if(isEqual(playerChoosen, generatedBlocks)){
-
-                Toast.makeText(this, "giiit", Toast.LENGTH_LONG).show()
-
-
-            }else{
-                Toast.makeText(this, "nie git", Toast.LENGTH_LONG).show()
-            }
-
-
-
-        }
     }
 
      fun ClickMuch(view: View){
@@ -100,29 +85,24 @@ class MainActivity : AppCompatActivity() {
 
 
         for(i in guziki.indices) {
-            if(bloczki.contains(i)) { guziki[i-1].setBackgroundResource(R.drawable.blue)}
+            if(bloczki.contains(i)) { guziki[i-1].setBackgroundResource(R.drawable.white)}
         }
-        Timer("waiting", false).schedule(2000) {
+        Timer("waiting", false).schedule(1750) {
 
             zamienNaPodstawe()
         }
     }
 
-
 fun random(liczba: Int):Int{
     val rand1 = (0..liczba).random()
     return rand1
 }
-
-
-
     fun zamienNaPodstawe(){
 
             for(i in guziki.indices){
-                guziki[i].setBackgroundResource(R.drawable.white)
+                guziki[i].setBackgroundResource(R.drawable.blue)
             }
     }
-
 // n is equal to number of blocks to generate
     fun losowanko(n: Int) {
     var pozostałe = bloczki1.toMutableList()
@@ -137,7 +117,6 @@ fun random(liczba: Int):Int{
         //    lista.adapter = adapter
 
         }catch (e: Exception){
-
         }
     }
     generatedBlocks = wylosowane
@@ -154,7 +133,7 @@ fun random(liczba: Int):Int{
 
         for(i in guziki.indices){
             if(i == block){
-                guziki[i-1].setBackgroundResource(R.drawable.blue)
+                guziki[i-1].setBackgroundResource(R.drawable.white)
 
                 //if player chose a block that wasn't correct
                if(!generatedBlocks.contains(block)){
@@ -162,7 +141,7 @@ fun random(liczba: Int):Int{
                        delay(TimeUnit.MILLISECONDS.toMillis(100))
                        withContext(Dispatchers.Main) {
                            // this is called after 3 secs
-                           guziki[i-1].setBackgroundResource(R.drawable.white)
+                           guziki[i-1].setBackgroundResource(R.drawable.blue)
                        }
                    }
 
@@ -182,19 +161,26 @@ fun random(liczba: Int):Int{
 
                   if(generatedBlocks.size == pickedGood){
 
-                      Toast.makeText(this, "you won", Toast.LENGTH_LONG).show()
-                      liczbaBloczkow++     // number of block to show in the next round increase by one
-
-                      generatedBlocks.clear()
-                      mistakes = 0
-                      pickedGood = 0
-
-                        zamienNaPodstawe()
-
                       CoroutineScope(Dispatchers.IO).launch {
                           delay(TimeUnit.MILLISECONDS.toMillis(300))
                           withContext(Dispatchers.Main) {
                               // this is called after 3 secs
+                                zamienNaPodstawe()
+                          }
+                      }
+                      Toast.makeText(this, "you won", Toast.LENGTH_LONG).show()
+                      liczbaBloczkow++     // number of block to show in the next round increase by one
+                      points++
+                      generatedBlocks.clear()
+                      mistakes = 0
+                      pickedGood = 0
+                      tv_points.text = points.toString()
+
+
+                      CoroutineScope(Dispatchers.IO).launch {
+                          delay(TimeUnit.MILLISECONDS.toMillis(600))
+                          withContext(Dispatchers.Main) {
+                              // this is called after 300 milis
 
                               losowanko(liczbaBloczkow)
                               kolorowanie(generatedBlocks)
@@ -202,23 +188,14 @@ fun random(liczba: Int):Int{
                           }
                       }
 
-
-
                       val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, generatedBlocks)
                       lista.adapter = adapter
 
-
                   }
-
                }
             }
         }
-
-
     }
-
-
-
 }
 
 

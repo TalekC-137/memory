@@ -235,38 +235,28 @@
 
     <Button
         android:id="@+id/button_akt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="157dp"
+        android:layout_width="164dp"
+        android:layout_height="67dp"
         android:layout_marginTop="53dp"
-        android:layout_marginEnd="148dp"
+        android:background="@drawable/blue"
         android:text="start"
         app:layout_constraintBottom_toTopOf="@+id/TableLevel1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.447" />
-
-    <Button
-        android:id="@+id/btn_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.655" />
 
     <TextView
-        android:id="@+id/tekst"
+        android:id="@+id/tv_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/btn_submit"
-        app:layout_constraintHorizontal_bias="0.563"
+        android:textColor="#DDDD"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/TableLevel1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
