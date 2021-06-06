@@ -1,9 +1,9 @@
 package com.scollon.markk
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     var pickedGood = 0
     var bloczki1 = listOf(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
     private val guziki by lazy { arrayOf(
-        findViewById<Button>(R.id.button),  findViewById(R.id.button2),
+        findViewById<Button>(R.id.button1),  findViewById(R.id.button2),
         findViewById(R.id.button3),  findViewById(R.id.button4),
         findViewById(R.id.button5),  findViewById(R.id.button6),
         findViewById(R.id.button7),  findViewById(R.id.button8),
@@ -61,8 +61,17 @@ class MainActivity : AppCompatActivity() {
 
      fun ClickMuch(view: View){
 
+         for (i in guziki.indices) {
+
+             if(view.id == guziki[i].id){
+                 pickedBlocks(i+1)
+             }
+         }
+/*
+            I'm keeping it as a lesson of how not to do this
+
         when(view.id){
-            R.id.button ->   pickedBlocks(1)
+            R.id.button1 ->   pickedBlocks(1)
             R.id.button2 ->  pickedBlocks(2)
             R.id.button3 ->  pickedBlocks(3)
             R.id.button4 ->  pickedBlocks(4)
@@ -79,6 +88,8 @@ class MainActivity : AppCompatActivity() {
             R.id.button15->  pickedBlocks(15)
             R.id.button16->  pickedBlocks(16)
         }
+
+ */
      }
 
     fun kolorowanie(bloczki: List<Int>) {
@@ -182,8 +193,19 @@ fun random(liczba: Int):Int{
                           withContext(Dispatchers.Main) {
                               // this is called after 300 milis
 
-                              losowanko(liczbaBloczkow)
-                              kolorowanie(generatedBlocks)
+                              if(liczbaBloczkow>=6){
+                                  val i = Intent(baseContext, visual2::class.java)
+                                  i.putExtra("points", points)
+                                  i.putExtra("liczbaBloczkow", liczbaBloczkow)
+                                  startActivity(i)
+                                  overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out);
+
+                              }else{
+                                  losowanko(liczbaBloczkow)
+                                  kolorowanie(generatedBlocks)
+                              }
+
+
 
                           }
                       }
@@ -196,6 +218,7 @@ fun random(liczba: Int):Int{
             }
         }
     }
+
 }
 
 
