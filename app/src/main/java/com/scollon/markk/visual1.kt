@@ -7,21 +7,23 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.lista
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_visual2.*
+import kotlinx.android.synthetic.main.activity_visual2.lista
 import kotlinx.coroutines.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.concurrent.schedule
 
-class visual2 : AppCompatActivity() {
+class visual1: AppCompatActivity()  {
+
     var test = 0
     var points = 0
     var playerChoosen = listOf<Int>()
     var liczbaBloczkow = 3
     var mistakes = 0
     var pickedGood = 0
-    var bloczki1 = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36)
+    var bloczki1 = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25)
     private val guziki by lazy { arrayOf(
         findViewById<Button>(R.id.button1), findViewById(R.id.button2),
         findViewById(R.id.button3), findViewById(R.id.button4),
@@ -35,13 +37,7 @@ class visual2 : AppCompatActivity() {
         findViewById(R.id.button19), findViewById(R.id.button20),
         findViewById(R.id.button21), findViewById(R.id.button22),
         findViewById(R.id.button23), findViewById(R.id.button24),
-        findViewById(R.id.button25), findViewById(R.id.button26),
-        findViewById(R.id.button27), findViewById(R.id.button28),
-        findViewById(R.id.button29), findViewById(R.id.button30),
-        findViewById(R.id.button31), findViewById(R.id.button32),
-        findViewById(R.id.button33), findViewById(R.id.button34),
-        findViewById(R.id.button35), findViewById(R.id.button36),
-        findViewById(R.id.btn_fake)
+        findViewById(R.id.button25), findViewById(R.id.btn_fake)
         // I added the fake because the list starts from index of 0 and iterating through them (i  in guziki.indecies)
         //  starts from i = 1 so to show the block i need to chose as (i-1) and the 16th block would never be shown
         // even if generated because i would stop at 16 and 16-1 = 15. i know i could just do (i in 0..17) but then it will not scale
@@ -51,10 +47,9 @@ class visual2 : AppCompatActivity() {
     var generatedBlocks : MutableList<Int> = mutableListOf()
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_visual2)
+        setContentView(R.layout.activity_visual1)
         zamienNaPodstawe()
 
         val pkt:Int = intent.getIntExtra("points",0)
@@ -74,28 +69,26 @@ class visual2 : AppCompatActivity() {
         }
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, generatedBlocks)
         lista.adapter = adapter
-     /*
-        button_akt.setOnClickListener(){
+        /*
+           button_akt.setOnClickListener(){
 
-            tv_points.text = points.toString() //aka 0 hah
-            losowanko(liczbaBloczkow)
-            kolorowanie(generatedBlocks)
-            button_akt.visibility = View.GONE
-            val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, generatedBlocks)
-            lista.adapter = adapter
-        }
+               tv_points.text = points.toString() //aka 0 hah
+               losowanko(liczbaBloczkow)
+               kolorowanie(generatedBlocks)
+               button_akt.visibility = View.GONE
+               val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, generatedBlocks)
+               lista.adapter = adapter
+           }
 
-      */
+         */
 
 
     }
-
     override fun onBackPressed() {
         super.onBackPressed()
         var i = Intent(this, Glowna::class.java)
         startActivity(i)
     }
-
     fun ClickMuch(view: View){
 
         for (i in guziki.indices) {
@@ -212,8 +205,18 @@ class visual2 : AppCompatActivity() {
                             withContext(Dispatchers.Main) {
                                 // this is called after 300 milis
 
-                                losowanko(liczbaBloczkow)
-                                kolorowanie(generatedBlocks)
+                                if(liczbaBloczkow>=10){
+                                    val i = Intent(baseContext, visual2::class.java)
+                                    i.putExtra("points", points)
+                                    i.putExtra("liczbaBloczkow", liczbaBloczkow)
+                                    startActivity(i)
+                                    overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out);
+
+                                }else{
+                                    losowanko(liczbaBloczkow)
+                                    kolorowanie(generatedBlocks)
+                                }
+
 
                             }
                         }
@@ -230,5 +233,9 @@ class visual2 : AppCompatActivity() {
             }
         }
     }
-}
 
+
+
+
+
+}

@@ -194,7 +194,7 @@ fun random(liczba: Int):Int{
                               // this is called after 300 milis
 
                               if(liczbaBloczkow>=6){
-                                  val i = Intent(baseContext, visual2::class.java)
+                                  val i = Intent(baseContext, visual1::class.java)
                                   i.putExtra("points", points)
                                   i.putExtra("liczbaBloczkow", liczbaBloczkow)
                                   startActivity(i)

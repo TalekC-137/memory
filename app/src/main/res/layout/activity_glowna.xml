@@ -4,24 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2b87d2"
     tools:context=".Glowna">
 
     <Button
         android:id="@+id/btn_vis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginStart="72dp"
+        android:background="@drawable/blue"
         android:text="visual"
+        android:textColor="#DDD"
         app:layout_constraintBottom_toBottomOf="@+id/btn_seq"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_seq"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="212dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="148dp"
+        android:background="@drawable/blue"
         android:text="sequence"
+        android:textColor="#DDD"
         app:layout_constraintStart_toEndOf="@+id/btn_vis"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
