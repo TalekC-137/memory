@@ -2,6 +2,7 @@ package com.scollon.markk
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.database.DatabaseUtils
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,8 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.lista
+import kotlinx.android.synthetic.main.activity_sequence.*
 import kotlinx.coroutines.*
 import java.lang.Exception
 import java.util.*
@@ -57,6 +60,16 @@ class MainActivity : AppCompatActivity() {
                     lista.adapter = adapter
         }
 
+        btn_saveMain.setOnClickListener {
+
+            addOneRecord() //saves the points to the database
+
+        }
+        btn_againMain.setOnClickListener {
+            finish()
+            startActivity(getIntent())
+            overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out);
+        }
     }
 
      fun ClickMuch(view: View){
@@ -156,13 +169,15 @@ fun random(liczba: Int):Int{
                        }
                    }
 
-                   Toast.makeText(this, "nah boi", Toast.LENGTH_SHORT).show()
+                 //  Toast.makeText(this, "nah boi", Toast.LENGTH_SHORT).show()
 
                    // after 3 mistakes the game ends
                    mistakes++
                    if(mistakes>=3){
                        Toast.makeText(this, "you lost", Toast.LENGTH_LONG).show()
                        mistakes = 0
+
+                       endGameScreen() //loads the endgame screen and load the points from the database
 
                }
                  //  playerChoosen+=block
@@ -217,6 +232,71 @@ fun random(liczba: Int):Int{
                }
             }
         }
+    }
+
+    private fun addOneRecord(){
+
+        var recordPoints =  tv_points.text as String
+        var intRecordPoints = Integer.parseInt(recordPoints)
+
+        var databaseHandlerVisual = DatabaseHandlerVisual(this)
+
+        if(!recordPoints.isEmpty()){
+        val status = databaseHandlerVisual.addEmployee(RecordModel(0,intRecordPoints))
+
+        if (status > -1) {
+            Toast.makeText(applicationContext, "Record saved", Toast.LENGTH_LONG).show()
+        }
+    } else {
+        Toast.makeText(
+            applicationContext,
+            "you messed up fool",
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+
+    }
+
+    private fun lastRecord() {
+        val databaseHandlerVisual: DatabaseHandlerVisual = DatabaseHandlerVisual(this)
+
+        // if says "bmi" because i copied it from my old code and i'm too lazy to change that
+        // AND since I'm the only one who will be working with this code I don't necessarily need to
+        if(databaseHandlerVisual.getBmiCount() != 0){
+
+            var RecordNum = databaseHandlerVisual.getBmiCount()
+
+            var modelik: RecordModel? = databaseHandlerVisual.getOne(RecordNum)
+
+            var a:Int = modelik?.score ?: 0
+
+            tv_lastScoreViewMain.text = a.toString()
+
+        }
+
+
+    }
+
+
+    private fun highScore(){
+        val databaseHandlerVisual: DatabaseHandlerVisual = DatabaseHandlerVisual(this)
+        if(databaseHandlerVisual.getBmiCount() != 0){
+
+            var rekord = databaseHandlerVisual.getBiggestInTheColumn()
+            tv_HighscoreViewMain.text = rekord.toString()
+        }
+
+    }
+
+    private fun endGameScreen(){
+
+        end_gameMain.visibility = View.VISIBLE
+        highScore()
+        lastRecord()
+        tv_scoreMain.text = tv_points.text.toString()
+
+
     }
 
 }
