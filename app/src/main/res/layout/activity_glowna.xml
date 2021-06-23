@@ -29,4 +29,18 @@
         android:textColor="#DDD"
         app:layout_constraintStart_toEndOf="@+id/btn_vis"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/btn_records"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/blue"
+        android:text="records"
+        android:textColor="#DDD"
+        app:layout_constraintStart_toEndOf="@+id/btn_vis"
+        app:layout_constraintTop_toBottomOf="@+id/btn_seq" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

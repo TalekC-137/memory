@@ -22,5 +22,12 @@ class Glowna : AppCompatActivity() {
             startActivity(i)
         }
 
+        btn_records.setOnClickListener {
+
+            val i = Intent(this, recordsActivity::class.java)
+            startActivity(i)
+
+        }
+
     }
 }

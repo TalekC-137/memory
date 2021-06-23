@@ -117,7 +117,7 @@ class visual1: AppCompatActivity()  {
 
     fun kolorowanie(bloczki: List<Int>) {
 
-
+        clickableFalse()
         for(i in guziki.indices) {
             if(bloczki.contains(i)) { guziki[i - 1].setBackgroundResource(R.drawable.white)}
         }
@@ -132,7 +132,7 @@ class visual1: AppCompatActivity()  {
         return rand1
     }
     fun zamienNaPodstawe(){
-
+    clickableTrue()
         for(i in guziki.indices){
             guziki[i].setBackgroundResource(R.drawable.blue)
         }
@@ -190,6 +190,7 @@ class visual1: AppCompatActivity()  {
                     if(mistakes>=3){
                         Toast.makeText(this, "you lost", Toast.LENGTH_LONG).show()
                         mistakes = 0
+                        clickableFalse()
                         endGameScreen() //loads the endgame screen and load the points from the database
                     }
                     //  playerChoosen+=block
@@ -313,7 +314,17 @@ class visual1: AppCompatActivity()  {
 
 
     }
+    fun clickableFalse(){
 
+        for(i in guziki.indices) {
+            guziki[i].isClickable = false
+        }
+    }
+    fun clickableTrue(){
+        for(i in guziki.indices) {
+            guziki[i].isClickable = true
+        }
+    }
 
 
 }
